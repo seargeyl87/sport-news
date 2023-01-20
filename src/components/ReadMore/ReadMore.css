@@ -1,0 +1,11 @@
+.read-more {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 20px 0;
+    width: 70%;
+}
+
+.read-more  .read-more__head {
+   font-size: 20px;
+   font-weight: bold;
+}

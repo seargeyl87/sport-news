@@ -1,0 +1,32 @@
+.read-more__item {
+    display: flex;
+    padding: 20px 0 20px 0;
+
+}
+
+.read-more__item .read-more__item__pict-tags-date {
+   display: flex;
+   flex-direction: column;
+   width: 50%;
+}
+
+.read-more__item .read-more__item__pict-tags-date .read-more__item__pict {
+    height: 300px;
+}
+
+.read-more__item .read-more__item__head-description {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    box-sizing: border-box;
+    padding-left: 30px;
+}
+
+.read-more__item .read-more__item__head-description .read-more__item__head {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.read-more__item .read-more__item__head-description .read-more__item__description {
+    margin-top: 20px;
+}
