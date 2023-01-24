@@ -1,7 +1,7 @@
 import "./ReadMore.css";
-import ReadMoreItem from "../ReadMoreItem/ReadMoreItem";
+import ReadMoreItem from "./ReadMoreItem/ReadMoreItem";
 
-function ReadMore() {
+const ReadMore = () => {
   return (
     <div className="read-more">
         <div className="read-more__head">Read more</div>

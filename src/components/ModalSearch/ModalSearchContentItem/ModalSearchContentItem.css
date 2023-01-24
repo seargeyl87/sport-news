@@ -1,0 +1,29 @@
+.modal-search_content-item {
+  display: flex;
+  border-bottom: solid 1px rgb(211, 211, 211);
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.modal-search_content-item .content-item-pict .content-item-pict-into {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size:cover;
+  background-position: center;
+}
+
+.modal-search_content-item .content-item-news {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.modal-search_content-item .content-item-news .content-item-news-head {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.modal-search_content-item .content-item-news .content-item-news-description {
+    font-size: 12px;
+}

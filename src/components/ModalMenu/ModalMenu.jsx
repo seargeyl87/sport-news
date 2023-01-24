@@ -1,6 +1,6 @@
 import "./ModalMenu.css";
 
-function ModalMenu({ active, setActive }) {
+const ModalMenu = ({ active, setActive }) => {
   return (
     <div
       className={active ? "modal-menu active" : "modal-menu"}

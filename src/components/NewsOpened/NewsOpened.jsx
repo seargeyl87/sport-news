@@ -3,7 +3,7 @@ import Comments from "../Comments/Comments";
 import ReadMore from "../ReadMore/ReadMore";
 
 
-function NewsOpened() {
+const NewsOpened = () => {
   return (
     <div className="news-opened">
       <div

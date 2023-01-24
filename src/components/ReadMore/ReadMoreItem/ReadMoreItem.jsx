@@ -1,6 +1,6 @@
 import "./ReadMoreItem.css";
 
-function ReadMoreItem() {
+const ReadMoreItem = () => {
   return (
     <div className="read-more__item">
       <div className="read-more__item__pict-tags-date">

@@ -1,8 +1,8 @@
 import "./ListNewsItem.css";
-import NewsRating from "../NewsRating/NewsRating";
+import NewsRating from "../../NewsRating/NewsRating";
 import {Link} from 'react-router-dom';
 
-function ListNewsItem() {
+const ListNewsItem = () => {
   let a = new Date("2017-01-26");
   return (
     <div className="list-news-item">

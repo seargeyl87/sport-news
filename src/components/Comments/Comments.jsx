@@ -1,17 +1,17 @@
 import "./Comments.css";
-import NewsRating from "../NewsRating/NewsRating";
-import CommentsItem from "../CommentsItem/CommentsItem";
+import CommentsItem from "./CommentsItem/CommentsItem";
+import NewsRatingVote from "../NewsRatingVote/NewsRatingVote";
 
-function Comments() {
+const Comments = () => {
   return (
     <div className="comments">
       <div className="comments__head">Comments</div>
       <div className="comments__add">
-        <div className="comments__add__area">
+        <div className="comments__add__area"> 
           <input />
         </div>
         <div className="comments__add__button-rating">
-          <NewsRating /> 
+          <NewsRatingVote /> 
           <button>Add comment</button>
         </div>
       </div>

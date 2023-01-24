@@ -1,24 +1,25 @@
-.comments .comments__item {
+.comments__item {
     display: flex;
     flex-direction: column;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid rgb(238, 238, 238) ;
  }
  
- .comments .comments__item .comments__item__profile {
+ .comments__item .profile {
    display: flex;
  }
  
 
  
- .comments .comments__item .comments__item__profile .comments__item__profile__name {
+.comments__item .profile .profile__name {
     display: flex;
     margin-left: 10px;
   }
  
- .comments .comments__item .comments__item__profile .comments__item__profile__img img {
+.comments__item .profile .profile__img img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    object-fit: cover;
  
  }

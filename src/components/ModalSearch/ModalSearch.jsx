@@ -1,18 +1,22 @@
 import "./ModalSearch.css";
+import ModalSearchContentItem from "./ModalSearchContentItem/ModalSearchContentItem";
 
-function ModalSearch({ active, setActive }) {
+const ModalSearch = ({ active, setActive }) => {
   return (
-    <div className= {active ? "modal-search active" :  "modal-search"}>
-      <div className="modal-search__content">
-        <div className="modal-search__content__search-close">
-          <div className="modal-search__content__search">
-              <input/>
-          </div>
-          <div className="modal-search__content__close" onClick={() => setActive(false)}>X</div>
-        </div>
+    <div
+      className={active ? "modal-search active" : "modal-search"}
+      onClick={() => setActive(false)}
+    >
+      <div
+        className="modal-search_content"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <ModalSearchContentItem />
+        <ModalSearchContentItem />
+        <ModalSearchContentItem />
       </div>
     </div>
   );
-}
+};
 
 export default ModalSearch;

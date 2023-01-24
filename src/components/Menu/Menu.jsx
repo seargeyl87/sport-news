@@ -4,7 +4,7 @@ import {useState} from "react";
 import ModalSearch from "../ModalSearch/ModalSearch";
 
 
-function  Menu() {
+const Menu = () => {
     const [modalMenuActive, setModalMenuActive] = useState(false)
     const [modalSearchActive, setModalSearchActive] = useState(false);
 

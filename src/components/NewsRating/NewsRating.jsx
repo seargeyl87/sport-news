@@ -1,19 +1,19 @@
 import "./NewsRating.css";
 import { useState, useEffect } from "react";
 
-function NewsRating() {
+const NewsRating =() => {
   const [newsRatingVote, setNewsRatingVote] = useState([
     { id: 1, vote: 2 },
-    { id: 2, vote: 2 },
+    { id: 2, vote: 5 },
     { id: 3, vote: 5 },
     { id: 3, vote: 5 },
   ]);
 
   const [middleRating, setMiddleRating] = useState(0);
 
-  function countOverallRating() {
+  function countOverallRating() { 
     let sum = 0;
-    newsRatingVote.forEach((item) => {
+    newsRatingVote.forEach((item) => { 
       sum += item.vote;
     });
     setMiddleRating(sum / newsRatingVote.length);

@@ -1,14 +1,12 @@
 import './ListNews.css';
-import ListNewsItem from '../ListNewsItem/ListNewsItem';
+import ListNewsItem from './ListNewsItem/ListNewsItem';
 
-function ListNews() {
+const ListNews = () => {
     return (
         <div className="list-news">
             <ListNewsItem/>
             <ListNewsItem/>
             <ListNewsItem/>
-            
-
         </div>
     )
 
