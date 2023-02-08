@@ -8,7 +8,7 @@
    display: flex;
    flex-direction: column;
    width: 50%;
-}
+} 
 
 .read-more__item .read-more__item__pict-tags-date .read-more__item__pict {
     height: 300px;
@@ -26,6 +26,13 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.read-more__item .read-more__item__head-description a
+{
+    text-decoration: none;
+
+}
+
 
 .read-more__item .read-more__item__head-description .read-more__item__description {
     margin-top: 20px;

@@ -1,43 +1,46 @@
 import "./ListNewsItem.css";
 import NewsRating from "../../NewsRating/NewsRating";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+import PostService from "../../../API/PostService";
+import { useState, useEffect } from "react";
 
-const ListNewsItem = () => {
-  let a = new Date("2017-01-26");
+const ListNewsItem = ({ itemNews, setChooseTags }) => {
+
+  const a = new Date(itemNews.date);
   return (
     <div className="list-news-item">
       <div className="list-news-item__img-tags">
         <div
           className="list-news-item__img"
           style={{
-            backgroundImage: `url("img/ronaldo.jpeg")`,
+            backgroundImage: `url(${itemNews.img})`,
             backgroundSize: "cover",
           }}
         >
-            <Link to="/news/15">
-            <div className="list-news-item__img__head">
-            «Слишком просто делать Роналду козлом отпущения, когда есть и другие
-            проблемы» Энди Коул об уходе Криштиану
-          </div>
-            </Link>
+          <Link to={`/news/${itemNews.id}`}>
+            <div className="list-news-item__img__head">{itemNews.heading}</div>
+          </Link>
           <div className="list-news-item__img__description">
-            Энди Коул высказался об уходе Криштиану Роналду из «Манчестер★
-            Юнайтед».
+            {itemNews.description}
           </div>
         </div>
+
         <div className="list-news-item__tags">
-          <div>Месси</div>
-          <div>Роналду</div>
-          <div>Коул</div>
-          <div>Манчестер Юнайтед</div>
+          {itemNews.tags.map((item, index) => (
+            <Link to={`/news/tag/${item}`} key={index}>
+              <div  onClick={() => setChooseTags(item)}>
+                {item}
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
       <div className="list-news-item__rating-date">
-        <NewsRating />
+        <NewsRating rating={itemNews.rating} />
         <div className="list-news-item__date">{a.toLocaleDateString()}</div>
       </div>
     </div>
   );
-}
+};
 
 export default ListNewsItem;

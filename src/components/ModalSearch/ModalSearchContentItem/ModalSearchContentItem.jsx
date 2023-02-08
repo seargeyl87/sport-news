@@ -1,25 +1,27 @@
 import "./ModalSearchContentItem.css";
+import { Link } from "react-router-dom";
 
-const ModalSearchContentItem = () => {
+const ModalSearchContentItem = ({ itemNews, setActive }) => {
+  const closeModal = () => {
+    setActive(false)
+  }
   return (
     <div className="modal-search_content-item">
       <div className="content-item-pict">
         <div
           className="content-item-pict-into"
           style={{
-            backgroundImage: `url("../img/ronaldo.jpeg")`,
+            backgroundImage: `url(${itemNews.img})`,
           }}
         ></div>
       </div>
 
       <div className="content-item-news">
-        <div className="content-item-news-head">
-          «Слишком просто делать Роналду козлом отпущения, когда есть и другие
-          проблемы» Энди Коул об уходе Криштиану
-        </div>
+        <Link to={`/news/${itemNews.id}`}>
+          <div className="content-item-news-head" onClick={() => closeModal()}>{itemNews.heading}</div>
+        </Link>
         <div className="content-item-news-description">
-          Энди Коул высказался об уходе Криштиану Роналду из «Манчестер★
-          Юнайтед».
+          {itemNews.description}
         </div>
       </div>
     </div>

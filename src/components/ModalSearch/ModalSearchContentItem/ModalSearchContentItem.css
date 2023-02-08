@@ -1,4 +1,4 @@
-.modal-search_content-item {
+.modal-search_content-item { 
   display: flex;
   border-bottom: solid 1px rgb(211, 211, 211);
   margin-bottom: 10px;
@@ -22,6 +22,10 @@
 .modal-search_content-item .content-item-news .content-item-news-head {
     font-weight: bold;
     font-size: 16px;
+}
+
+.modal-search_content-item .content-item-news a {
+  text-decoration: none;
 }
 
 .modal-search_content-item .content-item-news .content-item-news-description {

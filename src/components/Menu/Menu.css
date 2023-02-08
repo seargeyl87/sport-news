@@ -1,11 +1,23 @@
 .menu {
-  display: flex;
+display: flex;
+}
+
+.menu .transparent {
   height: 50px;
+  margin: 0;
+
+}
+
+
+.menu .menu_into {
+  display: flex;
   align-items: center;
   box-sizing: border-box;
-  top: 0;
-  width: 100%;
   height: 50px;
+  position: fixed;
+  background-color: rgb(238, 238, 238);
+  width: 992px;
+
 }
 
 .menu .menu__button-logo {
@@ -16,7 +28,7 @@
 .menu .menu__button-logo .menu__button {
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+
 }
 
 .menu .menu__button-logo .menu__button .menu__button_item {
@@ -48,5 +60,4 @@
   border: solid 1px rgb(161, 161, 161);
   border-radius: 5px;
   color: rgb(201, 200, 200);
-
 }

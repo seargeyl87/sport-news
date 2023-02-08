@@ -1,12 +1,15 @@
 import './App.css';
 import Menu from './components/Menu/Menu';
 import AppRouter from './components/AppRouter/AppRouter';
+import {useRef} from "react";
 
 function App() {
+  const topRef = useRef();
+
   return (
-    <div className="app">
+    <div className="app" ref={topRef}>
       <Menu/>
-      <AppRouter/>
+      <AppRouter topRef={topRef}/>
 
 
     </div>

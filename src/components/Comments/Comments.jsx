@@ -1,28 +1,142 @@
 import "./Comments.css";
 import CommentsItem from "./CommentsItem/CommentsItem";
 import NewsRatingVote from "../NewsRatingVote/NewsRatingVote";
+import { useState, useMemo, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import PostService from "../../API/PostService";
+import axios from "axios";
 
-const Comments = () => {
+const Comments = ({ newsId, id }) => {
+  const [listComments, setListComments] = useState([]);
+  const [countLimitPageComments, setCountLimitPageComments] = useState(1); // количество комментов при 1 запросе (на 1 странице)
+  const [currentPageComments, setCurrentPageComments] = useState(1); // текущая страница
+  const [amountQueryComments, setAmountQueryComments] = useState(1); // всего запросов(страниц)
+  const [inputName, setInputName] = useState("");
+  const [inputPost, setInputPost] = useState("");
+  let [stateButton, setStateButton] = useState(true);
+
+  async function getComment() {
+    const response = PostService.getNewsComments(
+      newsId,
+      countLimitPageComments,
+      currentPageComments
+    ).then((resp) => {
+      setAmountQueryComments(
+        Math.ceil(resp.headers["x-total-count"] / countLimitPageComments)
+      );
+      currentPageComments === 1
+        ? setListComments(resp.data)
+        : setListComments((listComments) => [...listComments, ...resp.data]);
+    });
+  }
+
+  // async function getNextComment() {
+  //   const response = PostService.getNewsComments(
+  //     newsId,
+  //     countLimitPageComments,
+  //     currentPageComments
+  //   ).then((resp) => {
+  //     console.log(resp.data)
+  //     setCurrentPageComments(currentPageComments + 1);
+  //     setAmountQueryComments(Math.ceil(resp.headers["x-total-count"] / countLimitPageComments));
+  //     setListComments((listComments) => [...listComments, ...resp.data]);
+  //   });
+  // }
+
+  async function postComment() {
+    axios
+      .post(`http://localhost:3000/comments`, {
+        name: inputName,
+        text: inputPost,
+        newsId: newsId,
+      })
+      .then((resp) => {
+        getComment();
+        setInputName("");
+        setInputPost("");
+      });
+  }
+
+  useEffect(() => {
+    if (inputName && inputPost) {
+      setStateButton(false);
+    } else {
+      setStateButton(true);
+    }
+  }, [inputName, inputPost]);
+
+  useEffect(() => {
+    getComment();
+  }, [currentPageComments]);
+
+  useEffect(() => {
+    setCurrentPageComments(1);
+    getComment();
+  }, [newsId, id]);
+
+
+
+  const changeName = (e) => {
+    if (!e.target.value) {
+      setInputName("");
+    } else {
+      setInputName(e.target.value);
+    }
+  };
+
+  const changePost = (e) => {
+    if (!e.target.value) {
+      setInputPost("");
+    } else {
+      setInputPost(e.target.value);
+    }
+  };
+
+
   return (
     <div className="comments">
       <div className="comments__head">Comments</div>
       <div className="comments__add">
-        <div className="comments__add__area"> 
-          <input />
+        <div className="comments__add__area">
+          <div className="comments__add__area__name">
+            <input
+              type="text"
+              name="name"
+              value={inputName}
+              placeholder="enter your name"
+              onChange={changeName}
+            />
+          </div>
+          <div className="comments__add__area__comment">
+            <input
+              type="text"
+              name="post"
+              value={inputPost}
+              placeholder="enter your post"
+              onChange={changePost}
+            />
+          </div>
         </div>
         <div className="comments__add__button-rating">
-          <NewsRatingVote /> 
-          <button>Add comment</button>
+          <button onClick={postComment} disabled={stateButton}>
+            Add comment
+          </button>
         </div>
       </div>
       <div className="comments__list">
-      <CommentsItem/>
-      <CommentsItem/>
-      <CommentsItem/>
-      <CommentsItem/>
+        {listComments.map((item, index) => (
+          <CommentsItem comment={item} key={index} />
+        ))}
       </div>
+      {amountQueryComments > currentPageComments ? (
+        <button onClick={() => setCurrentPageComments(currentPageComments + 1)}>
+          раскрыть
+        </button>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
-}
+};
 
 export default Comments;

@@ -1,7 +1,21 @@
 import "./ModalSearch.css";
 import ModalSearchContentItem from "./ModalSearchContentItem/ModalSearchContentItem";
+import PostService from "../../API/PostService";
+import { useState, useEffect } from "react";
 
 const ModalSearch = ({ active, setActive }) => {
+  const [newsModalSearch, setNewsModalSearch] = useState([]);
+
+  async function getNewsModalSearch() {
+    const response = PostService.getNewsModalSearch().then((resp) => {
+      setNewsModalSearch(resp.data);
+    });
+  }
+
+  useEffect(() => {
+    getNewsModalSearch();
+  }, []); 
+
   return (
     <div
       className={active ? "modal-search active" : "modal-search"}
@@ -11,9 +25,9 @@ const ModalSearch = ({ active, setActive }) => {
         className="modal-search_content"
         onClick={(e) => e.stopPropagation()}
       >
-        <ModalSearchContentItem />
-        <ModalSearchContentItem />
-        <ModalSearchContentItem />
+        {newsModalSearch.map((item, index) => (
+          <ModalSearchContentItem itemNews={item} key={index} setActive={setActive}/>
+        ))}
       </div>
     </div>
   );
