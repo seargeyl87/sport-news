@@ -7,11 +7,11 @@ const AppRouter = ({topRef}) => {
     <Routes>
       <Route path="/" element={<ListNews />} /> 
       <Route path="/news/:id" element={<NewsDetails topRef={topRef}/>}/>
-      <Route path="/news/tag/:id" element={<ListNews/>}/>
+      <Route path="/news/tag/:id" element={<ListNews topRef={topRef}/>}/>
 
     </Routes>
   );
-}
+} 
 
 export default AppRouter;
  

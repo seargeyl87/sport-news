@@ -1,5 +1,6 @@
 .list-news {
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  font-family: "Epilogue", sans-serif;
 }

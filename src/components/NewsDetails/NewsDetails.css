@@ -1,6 +1,7 @@
 .news-opened {
     display: flex;
     flex-direction: column;
+    font-family: 'Epilogue', sans-serif;
 }
 
 .news-opened  .news-opened__pict {
@@ -11,8 +12,8 @@
 
 
 .news-opened  .news-opened__head {
-    font-size: 25px;
-    margin-top: 20px;
+    font-size: 45px;
+    margin-top: 20px; 
     font-weight: bold;
 }
 
@@ -20,4 +21,47 @@
     margin-top: 15px;
     padding-bottom: 20px;
     box-sizing: border-box;
+    color: rgb(114, 114, 114);
+    font-size: 40px;
+
 }
+
+.news-opened .news-opened__tags-date {
+   display: flex;
+   margin-top: 20px;
+}
+
+
+
+.news-opened .news-opened__tags-date .news-opened__tags {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+}
+
+.news-opened .news-opened__tags-date .news-opened__tags a {
+    text-decoration: none;
+}
+
+.news-opened .news-opened__tags-date .news-opened__tags div {
+    margin-left: 15px;
+    background-color: rgb(0, 194, 26);
+    padding: 3px 7px 3px 7px;
+    color: white;
+    border-radius: 2px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-size: 35px;
+}
+
+
+.news-opened .news-opened__tags-date  .news-opened__date {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    color: rgb(160, 160, 160);
+    width: 30%;
+    font-size: 35px;
+
+
+} 

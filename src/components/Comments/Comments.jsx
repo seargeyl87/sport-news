@@ -1,8 +1,6 @@
 import "./Comments.css";
 import CommentsItem from "./CommentsItem/CommentsItem";
-import NewsRatingVote from "../NewsRatingVote/NewsRatingVote";
-import { useState, useMemo, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PostService from "../../API/PostService";
 import axios from "axios";
 
@@ -30,18 +28,6 @@ const Comments = ({ newsId, id }) => {
     });
   }
 
-  // async function getNextComment() {
-  //   const response = PostService.getNewsComments(
-  //     newsId,
-  //     countLimitPageComments,
-  //     currentPageComments
-  //   ).then((resp) => {
-  //     console.log(resp.data)
-  //     setCurrentPageComments(currentPageComments + 1);
-  //     setAmountQueryComments(Math.ceil(resp.headers["x-total-count"] / countLimitPageComments));
-  //     setListComments((listComments) => [...listComments, ...resp.data]);
-  //   });
-  // }
 
   async function postComment() {
     axios
@@ -103,7 +89,7 @@ const Comments = ({ newsId, id }) => {
               type="text"
               name="name"
               value={inputName}
-              placeholder="enter your name"
+              placeholder="Name"
               onChange={changeName}
             />
           </div>
@@ -112,15 +98,15 @@ const Comments = ({ newsId, id }) => {
               type="text"
               name="post"
               value={inputPost}
-              placeholder="enter your post"
+              placeholder="Comment"
               onChange={changePost}
             />
           </div>
-        </div>
-        <div className="comments__add__button-rating">
+          <div className="comments__add__area__button">
           <button onClick={postComment} disabled={stateButton}>
             Add comment
           </button>
+        </div>
         </div>
       </div>
       <div className="comments__list">
@@ -130,7 +116,7 @@ const Comments = ({ newsId, id }) => {
       </div>
       {amountQueryComments > currentPageComments ? (
         <button onClick={() => setCurrentPageComments(currentPageComments + 1)}>
-          раскрыть
+          read more
         </button>
       ) : (
         <div></div>

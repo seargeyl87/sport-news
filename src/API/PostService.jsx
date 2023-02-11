@@ -23,7 +23,7 @@ export default class PostService {
                 _page: page
             }
         });
-        return response;
+        return response.data;
     };
     static async getNewsModalSearch() {
         const response = await axios.get("http://localhost:3000/newsModalSearch");

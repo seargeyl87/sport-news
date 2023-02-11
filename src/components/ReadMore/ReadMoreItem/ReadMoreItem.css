@@ -1,39 +1,44 @@
 .read-more__item {
     display: flex;
     padding: 20px 0 20px 0;
+    box-sizing: border-box;
 
 }
 
-.read-more__item .read-more__item__pict-tags-date {
-   display: flex;
-   flex-direction: column;
-   width: 50%;
-} 
 
-.read-more__item .read-more__item__pict-tags-date .read-more__item__pict {
-    height: 300px;
-}
 
-.read-more__item .read-more__item__head-description {
+.read-more__item  .read-more__item__pict {
+    height: 400px;
     display: flex;
     flex-direction: column;
-    width: 50%;
-    box-sizing: border-box;
-    padding-left: 30px;
+    justify-content: end;
+    padding: 20px;
+
 }
 
-.read-more__item .read-more__item__head-description .read-more__item__head {
-  font-size: 20px;
+.read-more__item .read-more__item__pict .read-more__item__head-date {
+    display: flex;
+    flex-direction: column;
+}
+
+.read-more__item .read-more__item__pict .read-more__item__head-date .read-more__item__date {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 20px;
+
+}
+
+
+.read-more__item .read-more__item__head-date .read-more__item__head {
+  font-size: 38px;
+  color: white;
   font-weight: bold;
 }
 
-.read-more__item .read-more__item__head-description a
+.read-more__item .read-more__item__head-date a
 {
     text-decoration: none;
-
 }
 
 
-.read-more__item .read-more__item__head-description .read-more__item__description {
-    margin-top: 20px;
-}
+ 
