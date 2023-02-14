@@ -4,8 +4,7 @@ import ReadMore from "../ReadMore/ReadMore";
 import { useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import PostService from "../../API/PostService";
-import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom"; 
 
 const NewsDetails = ({ topRef }) => { 
   const [newsItem, setNewsItem] = useState([]);
@@ -13,6 +12,7 @@ const NewsDetails = ({ topRef }) => {
   const [listTags, setListTags] = useState([])
   const [date, setDate] = useState()
   const { id } = useParams();
+
 
   async function getNewsItem() {
     const response = PostService.getOpendNews(id).then((resp) => {
@@ -56,7 +56,7 @@ const NewsDetails = ({ topRef }) => {
 
       <div className="news-opened__head">{newsItem.heading}</div>
       <div className="news-opened__description">{newsItem.description}</div>
-      <Comments newsId={currentNewsId} id={id}/>
+      <Comments newsId={currentNewsId}/>
       <ReadMore handleBackClick={handleBackClick} />
     </div>
   );

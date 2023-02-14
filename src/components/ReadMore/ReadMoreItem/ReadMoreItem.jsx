@@ -2,9 +2,7 @@ import "./ReadMoreItem.css";
 import { Link } from "react-router-dom";
 
 const ReadMoreItem = ({ itemNews, handleBackClick }) => {
-  console.log(itemNews.date);
 
-  // setDate((new Date(resp.date)).toLocaleDateString());
 
   return (
     <div className="read-more__item">

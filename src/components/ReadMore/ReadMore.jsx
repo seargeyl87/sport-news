@@ -1,11 +1,10 @@
 import "./ReadMore.css";
 import ReadMoreItem from "./ReadMoreItem/ReadMoreItem";
 import PostService from "../../API/PostService";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 
-const ReadMore = ({handleBackClick}) => {
+const ReadMore = ({ handleBackClick }) => {
   const [newsReadMore, setReadMore] = useState([]);
-
 
   async function getReadMore() {
     const response = PostService.getNewsReadMore().then((resp) => {
@@ -13,17 +12,19 @@ const ReadMore = ({handleBackClick}) => {
     });
   }
 
- 
   useEffect(() => {
     getReadMore();
   }, []);
-
 
   return (
     <div className="read-more">
       <div className="read-more__head">Read more</div>
       {newsReadMore.map((item, index) => (
-        <ReadMoreItem itemNews={item} key={index} handleBackClick={handleBackClick}/>
+        <ReadMoreItem
+          itemNews={item}
+          key={index}
+          handleBackClick={handleBackClick}
+        />
       ))}
     </div>
   );

@@ -2,16 +2,17 @@ import "./Comments.css";
 import CommentsItem from "./CommentsItem/CommentsItem";
 import { useState, useEffect } from "react";
 import PostService from "../../API/PostService";
-import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const Comments = ({ newsId, id }) => {
+const Comments = ({ newsId }) => {
   const [listComments, setListComments] = useState([]);
   const [countLimitPageComments, setCountLimitPageComments] = useState(1); // количество комментов при 1 запросе (на 1 странице)
-  const [currentPageComments, setCurrentPageComments] = useState(1); // текущая страница
+  const [currentPageComments, setCurrentPageComments] = useState(0); // текущая страница
   const [amountQueryComments, setAmountQueryComments] = useState(1); // всего запросов(страниц)
   const [inputName, setInputName] = useState("");
   const [inputPost, setInputPost] = useState("");
-  let [stateButton, setStateButton] = useState(true);
+  const [stateButton, setStateButton] = useState(true);
+  const { id } = useParams();
 
   async function getComment() {
     const response = PostService.getNewsComments(
@@ -22,25 +23,18 @@ const Comments = ({ newsId, id }) => {
       setAmountQueryComments(
         Math.ceil(resp.headers["x-total-count"] / countLimitPageComments)
       );
-      currentPageComments === 1
+      currentPageComments < 1
         ? setListComments(resp.data)
         : setListComments((listComments) => [...listComments, ...resp.data]);
     });
   }
 
-
   async function postComment() {
-    axios
-      .post(`http://localhost:3000/comments`, {
-        name: inputName,
-        text: inputPost,
-        newsId: newsId,
-      })
-      .then((resp) => {
-        getComment();
-        setInputName("");
-        setInputPost("");
-      });
+    PostService.postNewsComment(inputName, inputPost, newsId).then(() => {
+      getComment();
+      setInputName("");
+      setInputPost("");
+    });
   }
 
   useEffect(() => {
@@ -56,11 +50,9 @@ const Comments = ({ newsId, id }) => {
   }, [currentPageComments]);
 
   useEffect(() => {
-    setCurrentPageComments(1);
+    setCurrentPageComments(0);
     getComment();
   }, [newsId, id]);
-
-
 
   const changeName = (e) => {
     if (!e.target.value) {
@@ -77,7 +69,6 @@ const Comments = ({ newsId, id }) => {
       setInputPost(e.target.value);
     }
   };
-
 
   return (
     <div className="comments">
@@ -103,10 +94,10 @@ const Comments = ({ newsId, id }) => {
             />
           </div>
           <div className="comments__add__area__button">
-          <button onClick={postComment} disabled={stateButton}>
-            Add comment
-          </button>
-        </div>
+            <button onClick={postComment} disabled={stateButton}>
+              Add comment
+            </button>
+          </div>
         </div>
       </div>
       <div className="comments__list">

@@ -1,33 +1,33 @@
-import "./ListNews.css"; 
+import "./ListNews.css";
 import ListNewsItem from "./ListNewsItem/ListNewsItem";
 import PostService from "../../API/PostService";
 import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 
-const ListNews = ({topRef}) => { 
+const ListNews = ({ topRef }) => {
   const [listNews, setListNews] = useState([]);
-  const [countLimitPage, setCountLimitPage] = useState(3);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [countLimitPage, setCountLimitPage] = useState(4);
+  const [currentPage, setCurrentPage] = useState(0);
   const [amountQuery, setAmountQuery] = useState(1); // всего запросов(страниц)
-  const [chooseTags, setChooseTags] = useState("");
   const [isNewsLoading, setIsNewsLoading] = useState(true);
   const lastElement = useRef();
   const observer = useRef();
+  const { id } = useParams();
 
   async function getNews() {
     setIsNewsLoading(true);
     const responce = PostService.getListNewsItem(
-      chooseTags,
+      id,
       countLimitPage,
       currentPage
     ).then((resp) => {
       setAmountQuery(Math.ceil(resp.headers["x-total-count"] / countLimitPage));
-      currentPage === 1
+      currentPage <= 1
         ? setListNews(resp.data)
         : setListNews((listNews) => [...listNews, ...resp.data]);
-        setIsNewsLoading(false);
+      setIsNewsLoading(false);
     });
   }
-
 
   useEffect(() => {
     getNews();
@@ -37,19 +37,19 @@ const ListNews = ({topRef}) => {
     setCurrentPage(1);
     getNews();
     handleBackClick();
-  }, [chooseTags]);
+  }, [id]);
 
   useEffect(() => {
-    if(isNewsLoading) return;
-    if(observer.current) observer.current.disconnect();
+    if (isNewsLoading) return;
+    if (observer.current) observer.current.disconnect();
     let callback = (entries, observer) => {
       if (entries[0].isIntersecting && amountQuery > currentPage) {
-        setCurrentPage(currentPage + 1)      }
+        setCurrentPage(currentPage + 1);
+      }
     };
     observer.current = new IntersectionObserver(callback);
     observer.current.observe(lastElement.current);
   }, [isNewsLoading]);
-
 
   function handleBackClick() {
     topRef.current.scrollIntoView({ behavior: "smooth" });
@@ -58,13 +58,9 @@ const ListNews = ({topRef}) => {
   return (
     <div className="list-news">
       {listNews.map((item, index) => (
-        <ListNewsItem
-          itemNews={item}
-          key={index}
-          setChooseTags={setChooseTags}
-        />
+        <ListNewsItem itemNews={item} key={index} />
       ))}
-      <div ref={lastElement} style={{ height: 1}}></div>
+      <div ref={lastElement} style={{ height: 1 }}></div>
     </div>
   );
 };

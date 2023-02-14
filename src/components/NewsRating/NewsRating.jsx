@@ -1,5 +1,4 @@
 import "./NewsRating.css";
-import { useState, useEffect } from "react";
 
 const NewsRating =({rating}) => {
 

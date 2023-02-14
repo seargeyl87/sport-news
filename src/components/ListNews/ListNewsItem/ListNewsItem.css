@@ -19,8 +19,7 @@
 }
 
 .list-news-item .list-news-item__img-tags .list-news-item__tags a {
-  text-decoration:none;
-
+  text-decoration: none;
 }
 
 .list-news-item .list-news-item__img-tags .list-news-item__tags div {
@@ -32,7 +31,7 @@
 
 .list-news-item .list-news-item__img-tags .list-news-item__img {
   height: 400px;
-    background-size: cover;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -41,7 +40,7 @@
 }
 
 .list-news-item
-  .list-news-item__img-tags 
+  .list-news-item__img-tags
   .list-news-item__img
   .list-news-item__img__head {
   font-size: 42px;
@@ -62,9 +61,84 @@
   margin-top: 10px;
 }
 
-
-.list-news-item  .list-news-item__date {
+.list-news-item .list-news-item__date {
   font-size: 27px;
   margin-bottom: 20px;
   color: white;
+}
+
+.list-news-item .img-tags-description-type-2 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.list-news-item .img-tags-description-type-2 .img-tags-description-type-2__img {
+  width: 50%;
+  background-position: center;
+}
+
+.list-news-item .img-tags-description-type-2 .tags-description-type-2 {
+  width: 50%;
+  padding: 15px;
+}
+
+.list-news-item
+  .img-tags-description-type-2
+  .tags-description-type-2
+  .tags-description-type-2__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list-news-item
+  .img-tags-description-type-2
+  .tags-description-type-2
+  .tags-description-type-2__tags
+  div {
+  padding-right: 5px;
+  padding-left: 5px;
+  color: rgb(158, 158, 158);
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+.list-news-item
+  .img-tags-description-type-2
+  .tags-description-type-2
+  .tags-description-type-2__tags
+  a {
+  text-decoration: none;
+}
+
+.list-news-item
+  .img-tags-description-type-2
+  .tags-description-type-2
+  .tags-description-type-2__date {
+  font-size: 22px;
+  color: rgb(158, 158, 158);
+  margin-top: 20px;
+}
+
+.list-news-item
+  .img-tags-description-type-2
+  .tags-description-type-2
+  .tags-description-type-2__head {
+  margin-top: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  color: rgb(75, 75, 75);
+}
+
+.list-news-item .img-tags-description-type-2 .tags-description-type-2 a {
+  text-decoration: none;
+}
+
+.list-news-item
+  .img-tags-description-type-2
+  .tags-description-type-2
+  .tags-description-type-2__description {
+  font-size: 18px;
+  margin-top: 10px;
 }

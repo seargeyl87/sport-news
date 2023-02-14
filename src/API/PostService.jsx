@@ -21,7 +21,7 @@ export default class PostService {
             params: {
                 _limit: limit,
                 _page: page
-            }
+            } 
         });
         return response.data;
     };
@@ -39,4 +39,15 @@ export default class PostService {
         });
         return response;
     };
+    static async postNewsComment(inputName, inputPost, newsId) {
+        const response = await axios.post(`http://localhost:3000/comments`, {
+            
+            name: inputName,
+            text: inputPost,
+            newsId: newsId,
+            
+        });
+        return response;
+    };
 }
+
