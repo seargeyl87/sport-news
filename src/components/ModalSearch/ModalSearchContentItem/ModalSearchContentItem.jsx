@@ -1,9 +1,10 @@
 import "./ModalSearchContentItem.css";
 import { Link } from "react-router-dom";
 
-const ModalSearchContentItem = ({ itemNews, setActive }) => {
+const ModalSearchContentItem = ({ itemNews, setActive, handleBackClick }) => {
   const closeModal = () => {
-    setActive(false)
+    setActive(false);
+    handleBackClick();
   }
   return (
     <div className="modal-search_content-item">

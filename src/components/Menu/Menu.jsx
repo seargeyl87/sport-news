@@ -3,18 +3,23 @@ import ModalMenu from "../ModalMenu/ModalMenu";
 import { useState } from "react";
 import ModalSearch from "../ModalSearch/ModalSearch";
 
-const Menu = () => {
+const Menu = ({topRef}) => {
   const [modalMenuActive, setModalMenuActive] = useState(false);
   const [modalSearchActive, setModalSearchActive] = useState(false);
 
+
+  function handleBackClick() {
+    topRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <div className="menu">
-      <div className="transparent"></div>
       <div className="menu_into" > 
-        <ModalMenu active={modalMenuActive} setActive={setModalMenuActive} />
+        <ModalMenu active={modalMenuActive} setActive={setModalMenuActive}/>
         <ModalSearch
           active={modalSearchActive}
           setActive={setModalSearchActive}
+          handleBackClick={handleBackClick}
         />
         <div className="menu__button-logo">
           <div
@@ -26,7 +31,7 @@ const Menu = () => {
             <div className="menu__button_item"></div>
           </div>
           <div className="menu__logo">
-            <img src="/img/sports.png" />
+            <img src="/img/logo.svg" />
           </div>
         </div>
         <div className="menu__search">

@@ -18,7 +18,7 @@ const ReadMore = ({ handleBackClick }) => {
 
   return (
     <div className="read-more">
-      <div className="read-more__head">Read more</div>
+      <div className="read-more__head">Other news</div>
       {newsReadMore.map((item, index) => (
         <ReadMoreItem
           itemNews={item}

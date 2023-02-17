@@ -1,6 +1,6 @@
 import "./NewsRating.css";
 
-const NewsRating =({rating}) => {
+const NewsRating =({rating}) => { 
 
   
   return (

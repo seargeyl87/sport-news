@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="app" ref={topRef}>
-      <Menu/>
+      <Menu topRef={topRef}/>
       <AppRouter topRef={topRef}/>
 
 

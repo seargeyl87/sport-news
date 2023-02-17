@@ -8,11 +8,12 @@
 
 
 .read-more__item  .read-more__item__pict {
-    height: 400px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: end;
     padding: 20px;
+    object-position: center
 
 }
 
@@ -23,14 +24,14 @@
 
 .read-more__item .read-more__item__pict .read-more__item__head-date .read-more__item__date {
     color: white;
-    font-size: 20px;
+    font-size: 12px;
     margin-bottom: 20px;
 
 }
 
 
 .read-more__item .read-more__item__head-date .read-more__item__head {
-  font-size: 38px;
+  font-size: 19px;
   color: white;
   font-weight: bold;
 }

@@ -4,25 +4,26 @@ import { useState, useEffect } from "react";
 import PostService from "../../API/PostService";
 import { useParams } from "react-router-dom";
 
-const Comments = ({ newsId }) => {
+const Comments = () => {
   const [listComments, setListComments] = useState([]);
-  const [countLimitPageComments, setCountLimitPageComments] = useState(1); // количество комментов при 1 запросе (на 1 странице)
-  const [currentPageComments, setCurrentPageComments] = useState(0); // текущая страница
-  const [amountQueryComments, setAmountQueryComments] = useState(1); // всего запросов(страниц)
+  const [countLimitPageComments, setCountLimitPageComments] = useState(3); 
+  const [currentPageComments, setCurrentPageComments] = useState(0); 
+  const [amountQueryComments, setAmountQueryComments] = useState(1); 
   const [inputName, setInputName] = useState("");
   const [inputPost, setInputPost] = useState("");
   const [stateButton, setStateButton] = useState(true);
+  const [stateReadMore, setStateReadMore] = useState(true)
   const { id } = useParams();
 
-  async function getComment() {
-    const response = PostService.getNewsComments(
-      newsId,
+  async function getComment() {                    
+    const response = PostService.getNewsComments(   //метод unshift вместо push, чтобы коммент запихнуть вначало
+      id,
       countLimitPageComments,
       currentPageComments
     ).then((resp) => {
-      setAmountQueryComments(
-        Math.ceil(resp.headers["x-total-count"] / countLimitPageComments)
-      );
+      if(resp.data.length ===0) {
+        setStateReadMore(false)
+      }
       currentPageComments < 1
         ? setListComments(resp.data)
         : setListComments((listComments) => [...listComments, ...resp.data]);
@@ -30,7 +31,7 @@ const Comments = ({ newsId }) => {
   }
 
   async function postComment() {
-    PostService.postNewsComment(inputName, inputPost, newsId).then(() => {
+    PostService.postNewsComment(inputName, inputPost, id).then(() => {
       getComment();
       setInputName("");
       setInputPost("");
@@ -52,7 +53,7 @@ const Comments = ({ newsId }) => {
   useEffect(() => {
     setCurrentPageComments(0);
     getComment();
-  }, [newsId, id]);
+  }, [id]);
 
   const changeName = (e) => {
     if (!e.target.value) {
@@ -105,7 +106,7 @@ const Comments = ({ newsId }) => {
           <CommentsItem comment={item} key={index} />
         ))}
       </div>
-      {amountQueryComments > currentPageComments ? (
+      {stateReadMore ? (
         <button onClick={() => setCurrentPageComments(currentPageComments + 1)}>
           read more
         </button>

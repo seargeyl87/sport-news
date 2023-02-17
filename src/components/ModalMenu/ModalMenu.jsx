@@ -1,35 +1,40 @@
 import "./ModalMenu.css";
+import PostService from "../../API/PostService";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ModalMenu = ({ active, setActive }) => {
+  const [listTags, setListTags] = useState([]);
+
+  async function getTagsMenu() {
+    const response = PostService.getTags().then((resp) => {
+      setListTags(resp);
+    });
+  }
+
+  useEffect(() => {
+    getTagsMenu();
+  }, []);
+
   return (
     <div
       className={active ? "modal-menu active" : "modal-menu"}
       onClick={() => setActive(false)}
     >
       <div className="modal-menu__content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-menu__auth">
-          <div className="modal-menu__auth__head">Авторизация</div>
-          <div className="modal-menu__auth__log-check">
-            <div>Войти</div>
-            <div>Регистрация</div>
-          </div>
-        </div>
-        <div className="modal-menu__list-sports">
-          <div className="modal-menu__list-sports__head">Виды спорта</div>
-          <div className="modal-menu__list-sports__list">
-            <div>Хоккей</div>
-            <div>Футбол</div>
-            <div>Баскетбол</div>
-            <div>Теннис</div>
-            <div>Биатлон</div>
-            <div>Авто</div>
-            <div>Бокс</div>
-            <div>Фигурное катание</div>
+        <div className="modal-menu__tags">
+          <div className="modal-menu__tags__head">Теги</div>
+          <div className="modal-menu__tags__log-check">
+            {listTags.map((item, index) => (
+              <Link to={`news/tag/${item}`} key={index}>
+                <div onClick={() => setActive(false)}>{item}</div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ModalMenu;

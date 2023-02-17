@@ -3,7 +3,7 @@ import ModalSearchContentItem from "./ModalSearchContentItem/ModalSearchContentI
 import PostService from "../../API/PostService";
 import { useState, useEffect } from "react";
 
-const ModalSearch = ({ active, setActive }) => {
+const ModalSearch = ({ active, setActive, handleBackClick }) => {
   const [newsModalSearch, setNewsModalSearch] = useState([]);
 
   async function getNewsModalSearch() {
@@ -26,7 +26,7 @@ const ModalSearch = ({ active, setActive }) => {
         onClick={(e) => e.stopPropagation()}
       >
         {newsModalSearch.map((item, index) => (
-          <ModalSearchContentItem itemNews={item} key={index} setActive={setActive}/>
+          <ModalSearchContentItem itemNews={item} key={index} setActive={setActive} handleBackClick={handleBackClick}/>
         ))}
       </div>
     </div>

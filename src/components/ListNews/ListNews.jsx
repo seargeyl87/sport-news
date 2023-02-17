@@ -8,7 +8,7 @@ const ListNews = ({ topRef }) => {
   const [listNews, setListNews] = useState([]);
   const [countLimitPage, setCountLimitPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
-  const [amountQuery, setAmountQuery] = useState(1); // всего запросов(страниц)
+  const [amountQuery, setAmountQuery] = useState(1);
   const [isNewsLoading, setIsNewsLoading] = useState(true);
   const lastElement = useRef();
   const observer = useRef();
