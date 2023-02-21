@@ -3,11 +3,11 @@ import ModalSearchContentItem from "./ModalSearchContentItem/ModalSearchContentI
 import PostService from "../../API/PostService";
 import { useState, useEffect } from "react";
 
-const ModalSearch = ({ active, setActive, handleBackClick }) => {
+const ModalSearch = ({ active, setActive, handleBackClick, searchValue }) => {
   const [newsModalSearch, setNewsModalSearch] = useState([]);
 
   async function getNewsModalSearch() {
-    const response = PostService.getNewsModalSearch().then((resp) => {
+    const response = PostService.getNewsModalSearch(searchValue).then((resp) => {
       setNewsModalSearch(resp.data);
     });
   }

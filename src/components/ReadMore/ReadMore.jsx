@@ -1,13 +1,21 @@
 import "./ReadMore.css";
 import ReadMoreItem from "./ReadMoreItem/ReadMoreItem";
 import PostService from "../../API/PostService";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; 
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+
 
 const ReadMore = ({ handleBackClick }) => {
   const [newsReadMore, setReadMore] = useState([]);
+  const { id } = useParams();
+
+
+
 
   async function getReadMore() {
-    const response = PostService.getNewsReadMore().then((resp) => {
+    const response = PostService.getNewsReadMore(id).then((resp) => {
       setReadMore(resp);
     });
   }
@@ -15,6 +23,7 @@ const ReadMore = ({ handleBackClick }) => {
   useEffect(() => {
     getReadMore();
   }, []);
+
 
   return (
     <div className="read-more">

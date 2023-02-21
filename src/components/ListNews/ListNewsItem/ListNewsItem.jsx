@@ -1,36 +1,38 @@
 import "./ListNewsItem.css";
 import { Link } from "react-router-dom";
 
-const ListNewsItem = ({ itemNews }) => {
+const ListNewsItem = ({ itemNews, changeToggle }) => {
   const a = new Date(itemNews.date);
 
   return (
     <div className="list-news-item">
-      {itemNews.type === 1 ? (
+      {itemNews.content === null ? (
         <div className="list-news-item__img-tags">
-          <div
-            className="list-news-item__img"
-            style={{
-              backgroundImage: `url(${itemNews.img})`,
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="list-news-item__date">{a.toLocaleDateString()}</div>
-
-            <Link to={`/news/${itemNews.id}`}>
-              <div className="list-news-item__img__head">
-                {itemNews.heading}
+          <Link to={`/news/${itemNews.id}`}>
+            <div
+              className="list-news-item__img"
+              style={{
+                backgroundImage: `url(${itemNews.imageUrl})`,
+                backgroundSize: "cover",
+              }}
+            >
+              <div className="list-news-item__date">
+                {a.toLocaleDateString()}
               </div>
-            </Link>
-            <div className="list-news-item__img__description">
-              {itemNews.description}
+
+              <div className="list-news-item__img__head">
+                {itemNews.header1}
+              </div>
+              <div className="list-news-item__img__description">
+                {itemNews.description}
+              </div>
             </div>
-          </div>
+          </Link>
 
           <div className="list-news-item__tags">
             {itemNews.tags.map((item, index) => (
               <Link to={`/news/tag/${item}`} key={index}>
-                <div>{item}</div>
+                <div onClick={changeToggle}>{item}</div>
               </Link>
             ))}
           </div>
@@ -40,7 +42,7 @@ const ListNewsItem = ({ itemNews }) => {
           <div
             className="img-tags-description-type-2__img"
             style={{
-              backgroundImage: `url(${itemNews.img})`,
+              backgroundImage: `url(${itemNews.imageUrl})`,
               backgroundSize: "cover",
             }}
           ></div>
@@ -58,7 +60,7 @@ const ListNewsItem = ({ itemNews }) => {
 
             <Link to={`/news/${itemNews.id}`}>
               <div className="tags-description-type-2__head">
-                {itemNews.heading}
+                {itemNews.header1}
               </div>
             </Link>
             <div className="tags-description-type-2__description">

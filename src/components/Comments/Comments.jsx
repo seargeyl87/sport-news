@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import PostService from "../../API/PostService";
 import { useParams } from "react-router-dom";
 
+
 const Comments = () => {
   const [listComments, setListComments] = useState([]);
   const [countLimitPageComments, setCountLimitPageComments] = useState(3); 
@@ -15,12 +16,13 @@ const Comments = () => {
   const [stateReadMore, setStateReadMore] = useState(true)
   const { id } = useParams();
 
+
   async function getComment() {                    
-    const response = PostService.getNewsComments(   //метод unshift вместо push, чтобы коммент запихнуть вначало
+    const response = PostService.getNewsComments(  
       id,
-      countLimitPageComments,
       currentPageComments
-    ).then((resp) => {
+    ).then((resp) => { 
+
       if(resp.data.length ===0) {
         setStateReadMore(false)
       }
@@ -29,6 +31,8 @@ const Comments = () => {
         : setListComments((listComments) => [...listComments, ...resp.data]);
     });
   }
+
+
 
   async function postComment() {
     PostService.postNewsComment(inputName, inputPost, id).then(() => {
@@ -47,7 +51,9 @@ const Comments = () => {
   }, [inputName, inputPost]);
 
   useEffect(() => {
-    getComment();
+    if(currentPageComments) {
+      getComment();
+    }
   }, [currentPageComments]);
 
   useEffect(() => {

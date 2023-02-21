@@ -1,6 +1,6 @@
 .modal-search {
   height: 100%;
-  max-width: 992px;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   padding: 0px 10px 0px 10px;

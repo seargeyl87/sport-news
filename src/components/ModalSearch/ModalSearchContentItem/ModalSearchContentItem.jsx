@@ -12,14 +12,14 @@ const ModalSearchContentItem = ({ itemNews, setActive, handleBackClick }) => {
         <div
           className="content-item-pict-into"
           style={{
-            backgroundImage: `url(${itemNews.img})`,
+            backgroundImage: `url(${itemNews.imageUrl})`,
           }}
         ></div>
       </div>
 
       <div className="content-item-news">
         <Link to={`/news/${itemNews.id}`}>
-          <div className="content-item-news-head" onClick={() => closeModal()}>{itemNews.heading}</div>
+          <div className="content-item-news-head" onClick={() => closeModal()}>{itemNews.header1}</div>
         </Link>
         <div className="content-item-news-description">
           {itemNews.description}

@@ -11,6 +11,7 @@ const NewsDetails = ({ topRef }) => {
   const [listTags, setListTags] = useState([]);
   const [date, setDate] = useState();
   const { id } = useParams();
+  
 
   async function getNewsItem() {
     const response = PostService.getOpendNews(id).then((resp) => {
@@ -33,7 +34,7 @@ const NewsDetails = ({ topRef }) => {
       <div
         className="news-opened__pict"
         style={{
-          backgroundImage: `url(${newsItem.img})`,
+          backgroundImage: `url(${newsItem.imageUrl})`,
           backgroundSize: "cover",
         }}
       ></div>
@@ -49,8 +50,8 @@ const NewsDetails = ({ topRef }) => {
         <div className="news-opened__date">{date}</div>
       </div>
 
-      <div className="news-opened__head">{newsItem.heading}</div>
-      <div className="news-opened__description">{newsItem.description}</div>
+      <div className="news-opened__head">{newsItem.header1}</div>
+      <div className="news-opened__description">{newsItem.header2}</div>
       <Comments />
       <ReadMore handleBackClick={handleBackClick} />
     </div>

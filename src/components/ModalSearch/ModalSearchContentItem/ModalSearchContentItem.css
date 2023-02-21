@@ -4,6 +4,7 @@
   margin-bottom: 10px;
   padding-bottom: 5px;
   font-family: 'Epilogue', sans-serif;
+  width: 100%;
 }
 
 .modal-search_content-item .content-item-pict .content-item-pict-into {
@@ -18,11 +19,15 @@
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+
+
 }
 
 .modal-search_content-item .content-item-news .content-item-news-head {
     font-weight: bold;
     font-size: 14px;
+    width: 100%;
+
 }
 
 .modal-search_content-item .content-item-news a {

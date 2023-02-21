@@ -6,44 +6,46 @@ import { useParams } from "react-router-dom";
 
 const ListNews = ({ topRef }) => {
   const [listNews, setListNews] = useState([]);
-  const [countLimitPage, setCountLimitPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
-  const [amountQuery, setAmountQuery] = useState(1);
   const [isNewsLoading, setIsNewsLoading] = useState(true);
   const lastElement = useRef();
+  const [stateToggle, setStateToggle] = useState(true);
   const observer = useRef();
   const { id } = useParams();
 
+
+  function  changeToggle() {
+    setStateToggle(item => !item);
+  }
+
   async function getNews() {
+
     setIsNewsLoading(true);
-    const responce = PostService.getListNewsItem(
-      id,
-      countLimitPage,
-      currentPage
-    ).then((resp) => {
-      setAmountQuery(Math.ceil(resp.headers["x-total-count"] / countLimitPage));
-      currentPage <= 1
-        ? setListNews(resp.data)
-        : setListNews((listNews) => [...listNews, ...resp.data]);
-      setIsNewsLoading(false);
-    });
+    const responce = PostService.getListNewsItem(id, currentPage).then(
+      (resp) => {
+        console.log(resp.data);
+        currentPage < 1
+          ? setListNews(resp.data)
+          : setListNews((listNews) => [...listNews, ...resp.data]);
+        setIsNewsLoading(false);
+      }
+    );
   }
 
   useEffect(() => {
     getNews();
-  }, [currentPage]);
+  }, [currentPage, stateToggle]);
 
   useEffect(() => {
-    setCurrentPage(1);
-    getNews();
+    setCurrentPage(0);
     handleBackClick();
   }, [id]);
 
   useEffect(() => {
     if (isNewsLoading) return;
     if (observer.current) observer.current.disconnect();
-    let callback = (entries, observer) => {
-      if (entries[0].isIntersecting && amountQuery > currentPage) {
+    let callback = (entries) => {
+      if (entries[0].isIntersecting > currentPage) {
         setCurrentPage(currentPage + 1);
       }
     };
@@ -58,7 +60,11 @@ const ListNews = ({ topRef }) => {
   return (
     <div className="list-news">
       {listNews.map((item, index) => (
-        <ListNewsItem itemNews={item} key={index} />
+        <ListNewsItem
+          itemNews={item}
+          changeToggle={changeToggle}
+          key={index}
+        />
       ))}
       <div ref={lastElement} style={{ height: 1 }}></div>
     </div>

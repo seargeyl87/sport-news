@@ -1,7 +1,7 @@
 import "./ModalMenu.css";
 import PostService from "../../API/PostService";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 const ModalMenu = ({ active, setActive }) => {
   const [listTags, setListTags] = useState([]);
@@ -16,6 +16,8 @@ const ModalMenu = ({ active, setActive }) => {
     getTagsMenu();
   }, []);
 
+
+
   return (
     <div
       className={active ? "modal-menu active" : "modal-menu"}
@@ -23,11 +25,10 @@ const ModalMenu = ({ active, setActive }) => {
     >
       <div className="modal-menu__content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-menu__tags">
-          <div className="modal-menu__tags__head">Теги</div>
           <div className="modal-menu__tags__log-check">
             {listTags.map((item, index) => (
-              <Link to={`news/tag/${item}`} key={index}>
-                <div onClick={() => setActive(false)}>{item}</div>
+              <Link to={`${item.url}`} key={index}>
+                <div onClick={() => setActive(false)}>{item.text}</div>
               </Link>
             ))}
           </div>

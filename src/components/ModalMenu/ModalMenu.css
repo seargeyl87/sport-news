@@ -31,14 +31,7 @@
   padding: 20px 0 20px 0;
 }
 
-.modal-menu .modal-menu__tags .modal-menu__tags__head {
-  color: green;
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid rgb(216, 216, 216);
-  height: 25px;
-  font-size: 20px;
-}
+
 
 .modal-menu .modal-menu__tags .modal-menu__tags__log-check {
   display: flex;

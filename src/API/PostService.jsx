@@ -1,57 +1,77 @@
 import axios from "axios";
 
+const _apiUrl = "https://api.football-news.co/api";
+
+ 
 
 export default class PostService {
-    static async getListNewsItem(tag, limit, page) {
-        const response = await axios.get(`http://localhost:3000/listNewsItem`, {
+    static async getListNewsItem(tag, page) {
+        const response = await axios.get(`${_apiUrl}/post/getlist`, {
             params: {
-                _limit: limit,
-                _page: page,
-                tags_like: tag
+                currentPageIndex: page,
+                tag: tag
             }
         });
         return response;
     };
-    static async getOpendNews(currentID=1) {
-        const response = await axios.get(`http://localhost:3000/newsOpend?id=${currentID}`);
-        return response.data[0];
-    };
-    static async getNewsReadMore(limit, page) {
-        const response = await axios.get("http://localhost:3000/newsReadMore", {
+
+    static async getOpendNews(newsID) {
+        const response = await axios.get(`${_apiUrl}/post/GetByID`, {
             params: {
-                _limit: limit,
-                _page: page
+                id: newsID
+            } 
+        }
+        );
+        return response.data;
+    };
+
+
+    static async getNewsReadMore(newsID, page = 0) {
+        const response = await axios.get(`${_apiUrl}/post/related`, {
+            params: {
+                newsID: newsID,
+                currentPageIndex: page
             } 
         });
         return response.data;
     };
-    static async getNewsModalSearch() {
-        const response = await axios.get("http://localhost:3000/newsModalSearch");
-        return response;
-    };
 
-    static async getNewsComments(id, limit, page) {
-        const response = await axios.get(`http://localhost:3000/comments?newsId=${id}`, {
+
+
+    static async getNewsModalSearch(searchQuery) {
+        const response = await axios.get(`${_apiUrl}/post/getlist`, {
             params: {
-                _limit: limit,
-                _page: page
+                searchQuery: searchQuery
             }
         });
         return response;
     };
-    static async postNewsComment(inputName, inputPost, newsId) {
-        const response = await axios.post(`http://localhost:3000/comments`, {
-            
-            name: inputName,
-            text: inputPost,
-            newsId: newsId,
+
+    static async getNewsComments(newsId, pageIndex) {
+        const response = await axios.get(`${_apiUrl}/comment/get`, {
+            params: {
+                id: newsId,
+                page: pageIndex
+            }
+        });
+        return response;
+    };
+    
+
+    static async postNewsComment(name, text, newsId) {
+        const response = await axios.post(`${_apiUrl}/comment/post`, {
+            name: name,
+            text: text,
+            postID: newsId,
             
         });
         return response;
     };
 
+
+
     static async getTags() {
-        const response = await axios.get(`http://localhost:3000/tagsModalMenu`);
+        const response = await axios.get(`${_apiUrl}/tag/get`);
         return response.data;
     };
 

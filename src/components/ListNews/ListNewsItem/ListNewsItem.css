@@ -1,6 +1,8 @@
 .list-news-item {
   display: flex;
   margin-bottom: 20px;
+  
+  
 }
 
 .list-news-item .list-news-item__img-tags {
@@ -17,7 +19,7 @@
   font-size: 12px;
 }
 
-.list-news-item .list-news-item__img-tags .list-news-item__tags a {
+.list-news-item .list-news-item__img-tags  a {
   text-decoration: none;
 }
 
@@ -26,10 +28,11 @@
   padding-left: 5px;
   color: rgb(114, 113, 113);
   margin-left: 10px;
+  margin-top: 7px;
 }
 
 .list-news-item .list-news-item__img-tags .list-news-item__img {
-  height: 190px;
+  height: 230px;
   background-size: cover;
   display: flex;
   flex-direction: column;
