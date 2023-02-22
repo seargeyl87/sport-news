@@ -13,13 +13,12 @@ const ListNews = ({ topRef }) => {
   const observer = useRef();
   const { id } = useParams();
 
-
+ 
   function  changeToggle() {
     setStateToggle(item => !item);
   }
 
   async function getNews() {
-
     setIsNewsLoading(true);
     const responce = PostService.getListNewsItem(id, currentPage).then(
       (resp) => {

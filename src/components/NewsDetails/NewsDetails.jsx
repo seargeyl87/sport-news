@@ -1,10 +1,10 @@
 import "./NewsDetails.css";
 import Comments from "../Comments/Comments";
 import ReadMore from "../ReadMore/ReadMore";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PostService from "../../API/PostService";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
  
 const NewsDetails = ({ topRef }) => {
   const [newsItem, setNewsItem] = useState([]);
@@ -28,6 +28,10 @@ const NewsDetails = ({ topRef }) => {
   useMemo(() => {
     getNewsItem();
   }, [id]);
+
+  useEffect(() => {
+    handleBackClick();
+  }, [])
 
   return (
     <div className="news-opened">

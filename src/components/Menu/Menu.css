@@ -16,7 +16,6 @@
   justify-content: center;
   left:auto;
   right: auto;
-  width: 100%;
 
 
 }
@@ -29,7 +28,6 @@
 .menu .menu__button-logo .menu__button {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
 
 }
 

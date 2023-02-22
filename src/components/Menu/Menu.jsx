@@ -19,7 +19,7 @@ const Menu = ({ topRef }) => {
     if (!e.target.value) {
       setSearchValue("");
     } else {
-      setSearchValue(e.target.value);
+      setSearchValue(e.target.value); 
     }
   };
   console.log(searchValue)
