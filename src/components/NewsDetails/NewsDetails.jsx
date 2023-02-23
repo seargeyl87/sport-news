@@ -4,14 +4,13 @@ import ReadMore from "../ReadMore/ReadMore";
 import { useState, useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PostService from "../../API/PostService";
-import { Link } from "react-router-dom"; 
- 
+import { Link } from "react-router-dom";
+
 const NewsDetails = ({ topRef }) => {
   const [newsItem, setNewsItem] = useState([]);
   const [listTags, setListTags] = useState([]);
   const [date, setDate] = useState();
   const { id } = useParams();
-  
 
   async function getNewsItem() {
     const response = PostService.getOpendNews(id).then((resp) => {
@@ -31,7 +30,7 @@ const NewsDetails = ({ topRef }) => {
 
   useEffect(() => {
     handleBackClick();
-  }, [])
+  }, []);
 
   return (
     <div className="news-opened">
@@ -56,6 +55,9 @@ const NewsDetails = ({ topRef }) => {
 
       <div className="news-opened__head">{newsItem.header1}</div>
       <div className="news-opened__description">{newsItem.header2}</div>
+      <div className="news-opened__description">
+        {<div dangerouslySetInnerHTML={{ __html: newsItem.content }} />}
+      </div>
       <Comments />
       <ReadMore handleBackClick={handleBackClick} />
     </div>

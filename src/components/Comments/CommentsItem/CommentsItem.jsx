@@ -5,7 +5,7 @@ const CommentsItem = ({ comment }) => {
     <div className="comments__item">
       <div className="profile">
         <div className="profile__img">
-          <img src="/img/messi.jpeg" />
+          <img src="/img/icon-comment.svg" />
         </div>
         <div className="profile__name">{comment.name}</div>
       </div>

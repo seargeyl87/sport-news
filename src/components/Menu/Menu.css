@@ -39,8 +39,8 @@
 }
 
 .menu .menu__button-logo .menu__logo {
-  height: 17px;
-  margin-left: 15px;
+  height: 25px;
+  margin-left: 25px;
 }
 
 .menu .menu__button-logo .menu__logo img {
@@ -50,7 +50,7 @@
 
 .menu .menu__search {
   display: flex;
-  margin-left: 20px;
+  margin-left: 25px;
   width: 40%;
 }
 

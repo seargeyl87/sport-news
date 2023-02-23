@@ -11,10 +11,12 @@ const ModalSearch = ({ active, setActive, handleBackClick, searchValue }) => {
       setNewsModalSearch(resp.data);
     });
   }
-
+ 
   useEffect(() => {
-    getNewsModalSearch();
-  }, []); 
+    if(searchValue) {
+      getNewsModalSearch();
+    }
+  }, [searchValue]); 
 
   return (
     <div

@@ -2,7 +2,6 @@ import "./ReadMoreItem.css";
 import { Link } from "react-router-dom";
 
 const ReadMoreItem = ({ itemNews, handleBackClick }) => {
-  console.log(itemNews.date.substring(0, 10))
   return (
     <div className="read-more__item">
       <Link to={`/news/${itemNews.id}`}>
