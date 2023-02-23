@@ -2,8 +2,6 @@ import "./ListNewsItem.css";
 import { Link } from "react-router-dom";
 
 const ListNewsItem = ({ itemNews, changeToggle }) => {
-  const a = new Date(itemNews.date);
-
   return (
     <div className="list-news-item">
       {itemNews.content === null ? (
@@ -17,7 +15,12 @@ const ListNewsItem = ({ itemNews, changeToggle }) => {
               }}
             >
               <div className="list-news-item__date">
-                {a.toLocaleDateString()}
+                {new Date(Date.now()).toLocaleDateString() ===
+                new Date(itemNews.date).toLocaleDateString()
+                  ? itemNews.date.substring(11, 16)
+                  : new Date(itemNews.date)
+                      .toLocaleString()
+                      .substring(0, 17)}
               </div>
 
               <div className="list-news-item__img__head">
@@ -55,7 +58,10 @@ const ListNewsItem = ({ itemNews, changeToggle }) => {
               ))}
             </div>
             <div className="tags-description-type-2__date">
-              {a.toLocaleDateString()}
+              {new Date(Date.now()).toLocaleDateString() ===
+              new Date(itemNews.date).toLocaleDateString()
+                ? itemNews.date.substring(11, 16)
+                : new Date(itemNews.date).toLocaleString().substring(0, 17)}
             </div>
 
             <Link to={`/news/${itemNews.id}`}>

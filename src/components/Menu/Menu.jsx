@@ -10,8 +10,6 @@ const Menu = ({ topRef }) => {
   const [modalSearchActive, setModalSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  console.log(searchValue)
-
   function handleBackClick() {
     topRef.current.scrollIntoView({ behavior: "smooth" });
   }
@@ -24,7 +22,6 @@ const Menu = ({ topRef }) => {
       setSearchValue(e.target.value); 
     }
   };
-  console.log(searchValue)
 
   return (
     <div className="menu">

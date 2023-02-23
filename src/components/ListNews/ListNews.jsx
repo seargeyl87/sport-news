@@ -22,7 +22,6 @@ const ListNews = ({ topRef }) => {
     setIsNewsLoading(true);
     const responce = PostService.getListNewsItem(id, currentPage).then(
       (resp) => {
-        console.log(resp.data);
         currentPage < 1
           ? setListNews(resp.data)
           : setListNews((listNews) => [...listNews, ...resp.data]);

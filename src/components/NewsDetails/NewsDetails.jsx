@@ -16,7 +16,7 @@ const NewsDetails = ({ topRef }) => {
     const response = PostService.getOpendNews(id).then((resp) => {
       setNewsItem(resp);
       setListTags(resp.tags);
-      setDate(new Date(resp.date).toLocaleDateString());
+      setDate(resp.date);
     });
   }
 
@@ -50,7 +50,12 @@ const NewsDetails = ({ topRef }) => {
             </Link>
           ))}
         </div>
-        <div className="news-opened__date">{date}</div>
+        <div className="news-opened__date">
+          {new Date(Date.now()).toLocaleDateString() ===
+          new Date(date).toLocaleDateString()
+            ? date.substring(11, 16)
+            : new Date(date).toLocaleString().substring(0, 17)}
+        </div>
       </div>
 
       <div className="news-opened__head">{newsItem.header1}</div>
