@@ -1,7 +1,6 @@
 .read-more__item {
-  display: flex;
-  padding: 20px 0 20px 0;
-  box-sizing: border-box;
+  padding: 8px 0 8px 0;
+  box-sizing: border-box; 
   width: 100%;
 }
 
@@ -15,7 +14,7 @@
   width: 100%;
 }
 
-.read-more__item .read-more__item__pict .read-more__item__head-date {
+.read-more__item .read-more__item__pict a .read-more__item__head-date {
   display: flex;
   flex-direction: column;
 }

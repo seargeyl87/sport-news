@@ -5,8 +5,8 @@ const _apiUrl = "https://api.football-news.co/api";
  
 
 export default class PostService {
-    static async getListNewsItem(tag, page) {
-        const response = await axios.get(`${_apiUrl}/post/getlist`, {
+    static  getListNewsItem(tag, page) {
+        const response =  axios.get(`${_apiUrl}/post/getlist`, {
             params: {
                 currentPageIndex: page,
                 tag: tag

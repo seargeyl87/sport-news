@@ -1,12 +1,10 @@
 .menu {
   position: fixed;
-  top:0;
+  top: 0;
   width: 100%;
   left: 0;
   background-color: rgb(238, 238, 238);
-  
 }
-
 
 .menu .menu_into {
   display: flex;
@@ -14,10 +12,8 @@
   box-sizing: border-box;
   height: 50px;
   justify-content: center;
-  left:auto;
-  right: auto;
-
-
+  padding: 0 20px;
+  
 }
 
 .menu .menu__button-logo {
@@ -28,7 +24,6 @@
 .menu .menu__button-logo .menu__button {
   display: flex;
   flex-direction: column;
-
 }
 
 .menu .menu__button-logo .menu__button .menu__button_item {
@@ -39,7 +34,7 @@
 }
 
 .menu .menu__button-logo .menu__logo {
-  height: 25px;
+  height: 18px;
   margin-left: 25px;
 }
 
@@ -51,7 +46,7 @@
 .menu .menu__search {
   display: flex;
   margin-left: 25px;
-  width: 40%;
+  width: 50%;
 }
 
 .menu .menu__search input {

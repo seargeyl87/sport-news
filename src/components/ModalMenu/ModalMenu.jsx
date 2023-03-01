@@ -12,10 +12,10 @@ const ModalMenu = ({ active, setActive }) => {
     });
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     getTagsMenu();
   }, []);
-
+ 
 
 
   return (
