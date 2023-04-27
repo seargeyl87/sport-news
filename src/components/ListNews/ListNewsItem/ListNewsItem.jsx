@@ -1,12 +1,14 @@
 import "./ListNewsItem.css";
 import { Link } from "react-router-dom";
+import Moment from 'react-moment';
+import { CalendarStrings } from "../../Common/Dates";
 
 const ListNewsItem = ({ itemNews }) => {
     return (
         <div className="list-news-item">
             {itemNews.content === null ? (
                 <div className="list-news-item__img-tags">
-                    <Link to={`/news/${itemNews.id}`}>
+                    <Link to={`/news/${itemNews.id}/`}>
                         <div
                             className="list-news-item__img"
                             style={{
@@ -17,12 +19,7 @@ const ListNewsItem = ({ itemNews }) => {
 
                             <div className="list-news-item_footer">
                                 <div className="list-news-item__date">
-                                    {new Date(Date.now()).toLocaleDateString() ===
-                                        new Date(itemNews.date).toLocaleDateString()
-                                        ? itemNews.date.substring(11, 16)
-                                        : new Date(itemNews.date)
-                                            .toLocaleString()
-                                            .substring(0, 17)}
+                                    <Moment calendar={CalendarStrings} date={itemNews.date}></Moment>
                                 </div>
 
                                 <div className="list-news-item__img__head">
@@ -37,7 +34,7 @@ const ListNewsItem = ({ itemNews }) => {
 
                     <div className="list-news-item__tags">
                         {itemNews.tags.map((item, index) => (
-                            <Link to={`/news/tag/${item}`} key={index}>
+                            <Link to={`/news/tag/${item}/`} key={index}>
                                 {item}
                             </Link>
                         ))}
@@ -61,10 +58,7 @@ const ListNewsItem = ({ itemNews }) => {
                             ))}
                         </div>
                         <div className="tags-description-type-2__date">
-                            {new Date(Date.now()).toLocaleDateString() ===
-                                new Date(itemNews.date).toLocaleDateString()
-                                ? itemNews.date.substring(11, 16)
-                                : new Date(itemNews.date).toLocaleString().substring(0, 17)}
+                            <Moment calendar={CalendarStrings} date={itemNews.date}></Moment>
                         </div>
 
                         <Link to={`/news/${itemNews.id}`}>

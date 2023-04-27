@@ -25,6 +25,25 @@ export default class PostService {
         return response.data;
     };
 
+    static async getInfo() {
+        const response = await axios.get('https://api2.football-news.co/getinfo', {
+            params: {
+                
+            } 
+        });
+        return response.data;
+    };
+
+    static async getInfoForPost(postID, id, tagID) {
+        const response = await axios.get(`${_apiUrl}/info/get?id=${id}&tagID=${tagID}&postID=${postID}`, {
+            params: {
+                postID: postID,
+                id: id,
+                tagID: tagID
+            } 
+        });
+        return response.data;
+    };
 
     static async getNewsReadMore(newsID, page = 0) {
         const response = await axios.get(`${_apiUrl}/post/related`, {

@@ -5,8 +5,11 @@ import { useState, useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PostService from "../../API/PostService";
 import { Link } from "react-router-dom";
+import { CalendarStrings } from "../Common/Dates";
+import Moment from 'react-moment';
 
 const NewsDetails = ({ topRef }) => {
+    const [info, setInfo] = useState([]);
     const [newsItem, setNewsItem] = useState([]);
     const [listTags, setListTags] = useState([]);
     const [date, setDate] = useState();
@@ -15,9 +18,16 @@ const NewsDetails = ({ topRef }) => {
     async function getNewsItem() {
         const response = PostService.getOpendNews(id).then((resp) => {
             setNewsItem(resp);
+            resp.tags = resp.tags?.filter(x => x);
             setListTags(resp.tags);
             setDate(resp.date);
         });
+    }
+
+    async function getInfo() {
+        const response = await PostService.getInfo();
+        const siteResponse = await PostService.getInfoForPost(response ?? "", "1", "1");
+        setInfo(siteResponse?.content)
     }
 
     function handleBackClick() {
@@ -26,6 +36,7 @@ const NewsDetails = ({ topRef }) => {
 
     useMemo(() => {
         getNewsItem();
+        getInfo();
     }, [id]);
 
     useEffect(() => {
@@ -45,16 +56,13 @@ const NewsDetails = ({ topRef }) => {
                 <div className="news-opened__tags-date">
                     <div className="news-opened__tags">
                         {listTags.map((item, index) => (
-                            <Link to={`/news/tag/${item}`} key={index}>
+                            <Link to={`/news/tag/${item}/`} key={index}>
                                 <div>{item}</div>
                             </Link>
                         ))}
                     </div>
                     <div className="news-opened__date">
-                        {new Date(Date.now()).toLocaleDateString() ===
-                            new Date(date).toLocaleDateString()
-                            ? date.substring(11, 16)
-                            : new Date(date).toLocaleString().substring(0, 17)}
+                        <Moment calendar={CalendarStrings} date={newsItem.date}></Moment>
                     </div>
                 </div>
 
@@ -62,6 +70,9 @@ const NewsDetails = ({ topRef }) => {
                 <div className="news-opened__description">{newsItem.header2}</div>
                 <div className="news-opened__description">
                     {<div dangerouslySetInnerHTML={{ __html: newsItem.content }} />}
+                </div>
+                <div className="news-opened__info">
+                    {<div dangerouslySetInnerHTML={{ __html: info }} />}
                 </div>
                 <Comments />
                 <ReadMore handleBackClick={handleBackClick} />

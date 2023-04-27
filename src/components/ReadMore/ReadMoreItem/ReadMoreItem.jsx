@@ -1,5 +1,7 @@
 import "./ReadMoreItem.css";
 import { Link } from "react-router-dom";
+import Moment from 'react-moment';
+import { CalendarStrings } from "../../Common/Dates";
 
 const ReadMoreItem = ({ itemNews, handleBackClick }) => {
   // console.log(new Date(Date.now()).toLocaleDateString()); // сегодня дата
@@ -18,11 +20,9 @@ const ReadMoreItem = ({ itemNews, handleBackClick }) => {
           onClick={handleBackClick}
         >
           <div className="read-more__item__head-date">
+          
             <div className="read-more__item__date">
-              {new Date(Date.now()).toLocaleDateString() ===
-              new Date(itemNews.date).toLocaleDateString()
-                ? itemNews.date.substring(11, 16)
-                : new Date(itemNews.date).toLocaleString().substring(0, 17)}
+                <Moment calendar={CalendarStrings} date={itemNews.date}></Moment>
             </div>
             <div className="read-more__item__head">{itemNews.header1}</div>
           </div>

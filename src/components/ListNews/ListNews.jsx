@@ -18,16 +18,17 @@ const ListNews = ({ topRef }) => {
   console.log(id);
   console.log(currentPage)
 
-   function getNews() {
+  function getNews(page) {
+    page = page >= 0 ? page : currentPage;
     setIsNewsLoading(true);
-    const responce = PostService.getListNewsItem(id, currentPage).then(
+    const responce = PostService.getListNewsItem(id, page).then(
       (resp) => {
         if (resp.data.length) {
           setNewsQuery(true);
         } else {
           setNewsQuery(false);
         }
-        currentPage < 1
+        page < 1
           ? setListNews(resp.data)
           : setListNews((listNews) => [...listNews, ...resp.data]);
         setIsNewsLoading(false);
@@ -36,12 +37,14 @@ const ListNews = ({ topRef }) => {
   }
 
   useEffect(() => {
-      getNews();
+    if(currentPage == 0) return;
+    getNews();
   }, [currentPage]);
 
   useEffect(() => {
-      setCurrentPage(0);
-      handleBackClick();
+    handleBackClick();
+    setCurrentPage(0);
+    getNews(0);
   }, [id]);
 
   useEffect(() => {
@@ -51,7 +54,7 @@ const ListNews = ({ topRef }) => {
       console.log(entries[0])
 
       if (entries[0].isIntersecting && newsQuery) {
-          setCurrentPage(currentPage + 1);
+        setCurrentPage(currentPage + 1);
       }
     };
     observer.current = new IntersectionObserver(callback);
